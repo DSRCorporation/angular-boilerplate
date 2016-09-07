@@ -1,0 +1,8 @@
+<div ng-show="($ctrl.form.$submitted || $ctrl.form[$ctrl.input].$dirty) && $ctrl.form[$ctrl.input].$invalid"
+     ng-messages="$ctrl.form[$ctrl.input].$error"
+     class="error">
+  <div ng-repeat="(key, message) in $root.errorMessages[$ctrl.input]">
+    <div ng-message-exp="key" class="text-wrap">{{ message }}</div>
+  </div>
+  <div ng-message="custom" class="text-wrap">{{ $ctrl.form[$ctrl.input].customError }}</div>
+</div>

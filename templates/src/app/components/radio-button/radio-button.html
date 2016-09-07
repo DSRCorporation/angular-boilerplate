@@ -1,0 +1,13 @@
+<div ng-form="{{$ctrl.formName}}">
+  <label class="radio">
+    <input hidden type="radio"
+           ng-model="$ctrl.model"
+           ng-required="$ctrl.required"
+           ng-disabled="$ctrl.disabled"
+           name="{{$ctrl.name}}"
+           ng-value="$ctrl.value"/>
+    <span class="radio__marker"></span>
+    <span class="radio__text">{{$ctrl.label}}</span>
+  </label>
+  <error input="{{$ctrl.name}}"></error>
+</div>

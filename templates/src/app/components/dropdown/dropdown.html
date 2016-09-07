@@ -1,0 +1,10 @@
+<div ng-form="{{$ctrl.formName}}">
+  <select class="dropdown"
+          name="{{$ctrl.name}}"
+          ng-model="$ctrl.model"
+          ng-required="$ctrl.required">
+    <option value="" disabled>{{$ctrl.label}}</option>
+    <option ng-repeat="option in $ctrl.options" value="{{option.code}}">{{option.label}}</option>
+  </select>
+  <error input="{{$ctrl.name}}"></error>
+</div>

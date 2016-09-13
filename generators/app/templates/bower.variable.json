@@ -6,9 +6,7 @@
     "angular-animate": "^1.5.5",
     "angular-click-outside": "^2.8.3",
     "angular-loading-bar": "^0.9.0",
-    "angular-local-storage": "^0.2.7",
     "angular-messages": "^1.5.5",
-    "angular-random-string": "^0.1.0",
     "angular-resource": "^1.5.7",
     "angular-sanitize": "^1.5.5",
     "angular-ui-router": "^0.3.1",
@@ -17,8 +15,11 @@
     "moment": "^2.14.1",
     "moment-timezone": "^0.5.5",
     "ngDialog": "^0.6.2",
-    "normalize-css": "^4.2.0",
-    "angular-responsive-breakpoints": "^0.1.0"
+    "normalize-css": "^4.2.0"<% if (jwt) { %>,
+    "angular-local-storage": "^0.2.7"<% } if (components) { %>,
+    "angular-random-string": "^0.1.0"<% } if (responsive) { %>,
+    "angular-responsive-breakpoints": "^0.1.0",
+    "flex-attr": "^0.1.2" <% } %>
   },
   "resolutions": {
     "angular-ui-router": "^0.3.1",

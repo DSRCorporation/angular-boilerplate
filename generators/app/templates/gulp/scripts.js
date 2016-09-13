@@ -26,7 +26,7 @@ gulp.task('scripts', ['annotate'], function () {
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.jshint.reporter('gulp-jshint-jenkins-reporter'))
-    .pipe(evn.gulpCurrMode() === env.gulpModes.dev ? gutil.noop() : $.jshint.reporter('fail'))
+    .pipe(env.gulpCurrMode() === env.gulpModes.dev ? gutil.noop() : $.jshint.reporter('fail'))
     .pipe(browserSync.reload({stream: true}))
     .pipe($.size());
 });

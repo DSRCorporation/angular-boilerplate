@@ -48,7 +48,6 @@ gulp.task('styles', function () {
     .pipe(wiredep(Object.assign({}, conf.wiredep)))
     .pipe($.sourcemaps.init())
     .pipe($.less(lessOptions)).on('error', conf.errorHandler('Less'))
-    .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
     .pipe(postcss(processors))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')))

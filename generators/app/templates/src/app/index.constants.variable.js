@@ -15,8 +15,9 @@
     // Backend error codes
     .constant('errorCodes', {
       // TODO: Add backend error codes
-    })
+    })<% if (jwt) { %>
     .constant('localStorageKeys', {
       authToken: 'authToken'
-    });
+    })<% } %>
+    ;
 })();

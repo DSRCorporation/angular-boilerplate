@@ -10,6 +10,7 @@
         showCustomFieldError: showCustomFieldError
       };
 
+      // TODO: broadcast error to child components
       function showCustomFieldError(scope, fieldError) {
         scope.$broadcast('customFieldError', fieldError);
       }

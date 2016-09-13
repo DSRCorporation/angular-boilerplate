@@ -5,7 +5,7 @@
     .module('webAppNameWebApp')
     .run(runBlock);
 
-  function runBlock($log, errorHelpers<% if (backBtn) { %>, $rootScope<% } if (scrollToTop) { %>, $document <% } if (detectScreenBottom) { %>, $window <% } %>) {
+  function runBlock($log, errorHelpers, $rootScope, $state<% if (backBtn) { %>, $timeout, $location<% } if (scrollToTop) { %>, $document <% } if (detectScreenBottom) { %>, $window <% } %>) {
     $log.debug('runBlock');
     <% if (backBtn) { %>
     $rootScope.$on('$locationChangeSuccess', function () {

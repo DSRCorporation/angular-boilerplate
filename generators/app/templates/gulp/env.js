@@ -10,17 +10,15 @@ var gulpModes = {
   test: 'test'
 };
 
-exports = {
-  gulpModes: gulpModes,
-  gulpCurrMode: function () {
-    return gutil.env.GULP_MODE;
-  },
-  gulpIgnoreModes: function () {
-    var currMode = gutil.env.GULP_MODE || gulpModes.dev;
-    return _.filter(gulpModes, function (mode) {
-      return mode !== currMode;
-    })
-  }
+exports.gulpModes = gulpModes;
+exports.gulpCurrMode = function () {
+  return gutil.env.GULP_MODE;
+};
+exports.gulpIgnoreModes = function () {
+  var currMode = gutil.env.GULP_MODE || gulpModes.dev;
+  return _.filter(gulpModes, function (mode) {
+    return mode !== currMode;
+  })
 };
 
 gulp.task('env:prod', function () {

@@ -72,7 +72,8 @@ module.exports = generators.Base.extend({
 				this.templatePath('.*'),
 				'!' + this.templatePath('*.variable*'),
 				'!' + this.templatePath('*.*-addon*'),
-				'!' + this.templatePath('*-addon'),
+				'!' + this.templatePath('*.*-addon/**'),
+				'!' + this.templatePath('**/*.*-addon/**'),
 				'!' + this.templatePath('**/*.variable*'),
 				'!' + this.templatePath('**/*.*-addon*')
 			],
@@ -81,26 +82,28 @@ module.exports = generators.Base.extend({
 	},
 	copyingAddOns: function () {
 		this.log('Copying add-ons');
-		var config = this.config.getAll();
-		var addons = Object.keys(config);
+		var config = this.config.getAll(),
+			addons = Object.keys(config),
+			copySrc = [];
+
 		addons = addons.filter(function (addon) {
 			return config[addon] === true;
 		});
 		addons.forEach(function(addon) {
-			var log = this.log;
 			this.registerTransformStream(rename(function(path) {
 				path.dirname = path.dirname.replace('.' + addon + '-addon', '');
 				path.basename = path.basename.replace('.' + addon + '-addon', '');
 				return path;
 			}));
-		}.bind(this));
-		if (addons.length) {
-			this.fs.copy(
-				addons.map(function (addon) {
-					return this.templatePath('**/*.' + addon + '-addon*');
-				}.bind(this)),
-				this.destinationRoot()
+			copySrc.push(
+				this.templatePath('*.' + addon + '-addon*'),
+				this.templatePath('**/*.' + addon + '-addon*'),
+				this.templatePath('*.' + addon + '-addon/**'),
+				this.templatePath('**/*.' + addon + '-addon/**')
 			);
+		}.bind(this));
+		if (copySrc.length) {
+			this.fs.copy(copySrc, this.destinationRoot());
 		}
 	},
 	copyingVariables: function () {
@@ -118,5 +121,12 @@ module.exports = generators.Base.extend({
 			this.destinationRoot(),
 			config
 		);
+	},
+	install: function() {
+		this.log('Installing dependencies');
+		this.installDependencies();
+	},
+	end: function() {
+		this.log('Your angular app is ready! Run \'gulp serve\' to start it. More info available at https://github.com/DSRCorporation/angular-generator.');
 	}
 });

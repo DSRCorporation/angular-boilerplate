@@ -11,10 +11,10 @@
       'ui.router',
       'ui.router.stateHelper',
       'angular-click-outside',
-      'ngMessages',
-      'LocalStorageModule',
-      'angularRandomString',
-      'ngResponsiveBreakpoints'
+      'ngMessages'<% if (jwt) { %>,
+      'LocalStorageModule'<% } if (components) { %>,
+      'angularRandomString'<% } if (responsive) { %>,
+      'ngResponsiveBreakpoints'<% } %>
       ]
     );
 

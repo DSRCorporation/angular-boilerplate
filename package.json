@@ -11,6 +11,9 @@
   "author": "DSR Corporation",
   "license": "MIT",
   "dependencies": {
+    "gulp-if": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "yeoman-generator": "^0.24.1"
   }
 }

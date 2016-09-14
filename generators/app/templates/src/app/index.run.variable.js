@@ -5,7 +5,7 @@
     .module('webAppNameWebApp')
     .run(runBlock);
 
-  function runBlock($log, errorHelpers, $rootScope, $state<% if (backBtn) { %>, $timeout, $location<% } if (scrollToTop) { %>, $document <% } if (detectScreenBottom) { %>, $window <% } %>) {
+  function runBlock($log, errorHelpers, $rootScope, $state<% if (backBtn) { %>, $timeout, $location<% } if (scrollToTop) { %>, $document<% } if (detectScreenBottom) { %>, $window<% } if (responsive) { %>, responsiveBreakpoints<% } %>) {
     $log.debug('runBlock');
     <% if (backBtn) { %>
     $rootScope.$on('$locationChangeSuccess', function () {
@@ -40,6 +40,11 @@
       if (this.document.body.scrollTop + this.document.body.clientHeight >= this.document.body.scrollHeight) {
         $rootScope.$broadcast('ui.scrollbarIsOnBottom');
       }
+    });
+
+    <% } if (responsive) { %>
+    _.assign($rootScope, {
+      screen: responsiveBreakpoints
     });
     <% } %>
 

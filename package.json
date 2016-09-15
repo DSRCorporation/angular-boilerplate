@@ -5,6 +5,11 @@
   "files": [
     "generators/app"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSRCorporation/angular-generator.git"
+  },
+  "homepage": "https://github.com/DSRCorporation/angular-generator#readme",
   "keywords": [
     "yeoman-generator"
   ],

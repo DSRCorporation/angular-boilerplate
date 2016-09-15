@@ -9,7 +9,7 @@
   - [Components and partials](#components-and-partials)
   - [LESS](#less)
   - [Optional features](#optional-features)
-- [Defauls](#defaults)
+- [Defaults](#defaults)
 - [License](#license)
 
 ## Prerequisites

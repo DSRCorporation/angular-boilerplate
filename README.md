@@ -138,7 +138,8 @@ LESS styles are spread across the files:
   - errorHelpers.handleBackendError is invoked if any error caught, redirect to your home page happens otherwise
 - Different constants for production, development and testing
   - By default index.constants.development.js and index.constants.production.js are provided with 'apiRoot' constant injected
-- Bower dependencies' versions
+- Dependencies' versions
+  - Bower
   ```
   "angular": "^1.5.8",
   "angular-animate": "^1.5.5",

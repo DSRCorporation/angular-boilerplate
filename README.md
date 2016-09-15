@@ -1,5 +1,17 @@
 # Yeoman generator for AngularJS by DSR Corporation    
 
+## Table of contents
+
+- [Prerequisites](#prerequisites)
+- [Install](#install)
+- [Run](#run)
+- [Architecture](#architecture)
+  - [Components and partials](#components-and-partials)
+  - [LESS](#less)
+  - [Optional features](#optional-features)
+- [Defauls](#defaults)
+- [License](#license)
+
 ## Prerequisites
 
 - NPM    
@@ -9,6 +21,7 @@
 ## Install
 
 ```
+npm install generator-angular-dsr
 yo angular-dsr
 ```
 During the installation process you are going to be asked a few questions whether to include some features or not. 
@@ -98,10 +111,54 @@ LESS styles are spread across the files:
     - Injected in the $rootScope in the index.run.js and can be accessed across your whole app via screen.
 - Detect a browser back button click
   - Detects if a user clicks a browser back button providing a possibility to apply custom handler for this occasion in index.run.js.
-- Autoscroll to top
+- Autoscroll to the top
   - Overrides Angular's default preserve scroll position between states feature and scrolls a user's screen to the top on each state change.
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
+
+### Defaults
+
+- BrowserSync
+  - It is used only as a web server, syncing between browsers is disabled
+- Logging
+  - Debug mode is enabled in config
+- URLs
+  - HTML5 mode is enabled in config
+- Dialogs
+  - Constant with dialog close codes added to index.constants.js
+  ```
+  'dialogButtons', {
+      CANCEL: 0,
+      OK: 1,
+      YES: 2,
+      NO: 3
+    }
+  ```
+- Handling state change errors
+  - errorHelpers.handleBackendError is invoked if any error caught, redirect to your home page happens otherwise
+- Different constants for production, development and testing
+  - By default index.constants.development.js and index.constants.production.js are provided with 'apiRoot' constant injected
+- Bower dependencies' versions
+  ```
+  "angular": "^1.5.8",
+  "angular-animate": "^1.5.5",
+  "angular-click-outside": "^2.8.3",
+  "angular-loading-bar": "^0.9.0",
+  "angular-messages": "^1.5.5",
+  "angular-resource": "^1.5.7",
+  "angular-sanitize": "^1.5.5",
+  "angular-ui-router": "^0.3.1",
+  "angular-ui-router.stateHelper": "^1.3.1",
+  "lodash": "^4.13.1",
+  "moment": "^2.14.1",
+  "moment-timezone": "^0.5.5",
+  "ngDialog": "^0.6.2",
+  "normalize-css": "^4.2.0",
+  "angular-local-storage": "^0.2.7",
+  "angular-random-string": "^0.1.0",
+  "angular-responsive-breakpoints": "^0.1.0",
+  "flex-attr": "^0.1.2" 
+  ```
 
 ## License
 The MIT License (MIT)

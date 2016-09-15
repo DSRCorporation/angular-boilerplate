@@ -1,0 +1,29 @@
+.checkbox {
+  cursor: pointer;
+  position: relative;
+  display: block;
+
+  &__marker {
+    display: inline-block;
+    border: 2px solid @mainColor;
+    height: @gridSmall;
+    width: @gridSmall;
+    margin-right: @gridSmall;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+
+  &__text {
+    display: inline-block;
+    line-height: normal;
+    width: calc(~'100%' - @gridMedium);
+    vertical-align: middle;
+  }
+
+  input {
+    &:checked + .checkbox__marker {
+      background-color: @accentColor;
+      border-color: @accentColor;
+    }
+  }
+}

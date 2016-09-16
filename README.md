@@ -17,6 +17,7 @@
 - NPM    
 - Bower    
 - Yeoman      
+- ESLint    
 
 ## Install
 

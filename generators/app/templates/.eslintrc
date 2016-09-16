@@ -1,0 +1,105 @@
+{
+	"env": {
+		"browser": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 5,
+		"sourceType": "script"
+	},
+	"extends": "eslint:recommended",
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"windows"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"eqeqeq": [
+			"error",
+			"always"
+		],
+		"dot-notation": [
+			"error"
+		],
+		"strict": [
+			"error",
+			"function"
+		],
+		"array-bracket-spacing": [
+			"error",
+			"never"
+		],
+		"block-spacing": [
+			"error",
+			"never"
+		],
+		"brace-style": [
+			"error",
+			"stroustrup",
+			{
+				"allowSingleLine": true
+			}
+		],
+		"camelcase": [
+			"error"
+		],
+		"comma-dangle": [
+			"error",
+			"never"
+		],
+		"comma-spacing": [
+			"error"
+		],
+		"comma-style": [
+			"error"
+		],
+		"computed-property-spacing": [
+			"error"
+		],
+		"func-call-spacing": [
+			"error"
+		],
+		"key-spacing": [
+			"error"
+		],
+		"max-len": [
+			"error",
+			120,
+			2
+		],
+		"new-cap": [
+			"error"
+		],
+		"newline-after-var": [
+			"error",
+			"always"
+		],
+		"no-trailing-spaces": [
+			"error",
+			{
+				"skipBlankLines": true
+			}
+		]
+	},
+	"globals": {
+		"angular": true,
+		"_": true,
+		"moment": true,
+		"document": true,
+		"window": true,
+		"Promise": true,
+		"Object": true,
+		"Array": true,
+		"RegExp": true
+	}
+}

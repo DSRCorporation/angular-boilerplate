@@ -1,56 +1,57 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular.module('webAppNameWebApp')
-    .component('error', {
-      templateUrl: 'app/components/error/error.html',
-      controller: ErrorController,
-      require: {
-        form: '^^'
-      },
-      bindings: {
-        input: '@'
-      }
-    });
+	angular.module('webAppNameWebApp')
+		.component('error', {
+			templateUrl: 'app/components/error/error.html',
+			controller: ErrorController,
+			require: {
+				form: '^^'
+			},
+			bindings: {
+				input: '@'
+			}
+		});
 
-  function ErrorController($scope, $log) {
-    var ctrl = this;
-    activate();
+	function ErrorController($scope, $log) {
+		var ctrl = this;
 
-    function activate() {
-      $log.debug('ErrorController.activate');
+		activate();
 
-      _.extend(ctrl, {
-        $onInit: init
-      });
+		function activate() {
+			$log.debug('ErrorController.activate');
 
-      $log.debug('ErrorController.activate -> done');
-    }
+			_.extend(ctrl, {
+				$onInit: init
+			});
 
-    function init() {
-      $log.debug('ErrorController.init');
+			$log.debug('ErrorController.activate -> done');
+		}
 
-      $scope.$on('customFieldError', function (event, field) {
-        if (field.name === ctrl.input) {
-          var input = ctrl.form[ctrl.input];
+		function init() {
+			$log.debug('ErrorController.init');
 
-          input.$setValidity('custom', false);
-          input.customError = field.message;
+			$scope.$on('customFieldError', function (event, field) {
+				if (field.name === ctrl.input) {
+					var input = ctrl.form[ctrl.input];
 
-          $scope.$watch(
-            function () {
-              return input.$viewValue;
-            },
-            function (newValue, oldValue) {
-              if (newValue !== oldValue) {
-                input.$setValidity('custom', true);
-              }
-            }
-          );
-        }
-      });
+					input.$setValidity('custom', false);
+					input.customError = field.message;
 
-      $log.debug('ErrorController.init -> done');
-    }
-  }
+					$scope.$watch(
+						function () {
+							return input.$viewValue;
+						},
+						function (newValue, oldValue) {
+							if (newValue !== oldValue) {
+								input.$setValidity('custom', true);
+							}
+						}
+					);
+				}
+			});
+
+			$log.debug('ErrorController.init -> done');
+		}
+	}
 })();

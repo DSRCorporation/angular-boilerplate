@@ -1,52 +1,53 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular.module('webAppNameWebApp')
-    .component('checkbox', {
-      templateUrl: 'app/components/checkbox/checkbox.html',
-      controller: CheckboxController,
-      require: {
-        form: '^^'
-      },
-      bindings: {
-        model: '=',
-        required: '<',
-        disabled: '<',
-        name: '@',
-        label: '@'
-      }
-    });
+	angular.module('webAppNameWebApp')
+		.component('checkbox', {
+			templateUrl: 'app/components/checkbox/checkbox.html',
+			controller: CheckboxController,
+			require: {
+				form: '^^'
+			},
+			bindings: {
+				model: '=',
+				required: '<',
+				disabled: '<',
+				name: '@',
+				label: '@'
+			}
+		});
 
-  function CheckboxController($log, $scope, randomString) {
-    var ctrl = this;
-    activate();
+	function CheckboxController($log, $scope, randomString) {
+		var ctrl = this;
 
-    function activate() {
-      $log.debug('CheckboxController.activate');
+		activate();
 
-      _.extend(ctrl, {
-        formName: 'checkBoxForm' + randomString(32),
-        $onInit: init
-      });
+		function activate() {
+			$log.debug('CheckboxController.activate');
 
-      $log.debug('CheckboxController.activate -> done');
-    }
+			_.extend(ctrl, {
+				formName: 'checkBoxForm' + randomString(32),
+				$onInit: init
+			});
 
-    function init() {
-      $log.debug('CheckboxController.init');
+			$log.debug('CheckboxController.activate -> done');
+		}
 
-      $scope.$watch(
-        function () {
-          return ctrl.form.$submitted;
-        },
-        function (newValue) {
-          if (newValue) {
-            $scope[ctrl.formName].$setSubmitted();
-          }
-        }
-      );
+		function init() {
+			$log.debug('CheckboxController.init');
 
-      $log.debug('CheckboxController.init -> done');
-    }
-  }
+			$scope.$watch(
+				function () {
+					return ctrl.form.$submitted;
+				},
+				function (newValue) {
+					if (newValue) {
+						$scope[ctrl.formName].$setSubmitted();
+					}
+				}
+			);
+
+			$log.debug('CheckboxController.init -> done');
+		}
+	}
 })();

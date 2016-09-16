@@ -7,10 +7,13 @@
 		conf = require('./conf'),
 		env = require('./env'),
 		browserSync = require('browser-sync'),
-		gutil = require('gulp-util'),
 		$ = require('gulp-load-plugins')();
 
 	gulp.task('annotate', function () {
+		var currentVersion,
+			packageJson = JSON.parse(fs.readFileSync('./package.json'));
+
+		currentVersion = packageJson.version;
 		return gulp.src(populateArrayWithIgnoreFiles([
 			path.join(conf.paths.src, '/app/**/*.module.js'),
 			path.join(conf.paths.src, '/app/**/*.js'),
@@ -20,6 +23,7 @@
 			.pipe($.ngAnnotate({
 				single_quotes: true // eslint-disable-line
 			}))
+			.pipe($.if(/index.constants.js$/, $.replace('webAppNameWebAppVersion', currentVersion)))
 			.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
 	});
 
@@ -28,7 +32,7 @@
 			.pipe($.eslint())
 			.pipe($.eslint.format())
 			.pipe($.eslint.format('checkstyle', fs.createWriteStream('checkstyle.xml')))
-			.pipe(env.gulpCurrMode() === env.gulpModes.dev ? gutil.noop() : $.eslint.failAfterError('fail'))
+			.pipe(env.gulpCurrMode() === env.gulpModes.dev ? $.util.noop() : $.eslint.failAfterError())
 			.pipe(browserSync.reload({stream: true}))
 			.pipe($.size());
 	});

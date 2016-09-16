@@ -164,6 +164,8 @@ LESS styles are spread across the files:
 - Code validation
   - Build in production mode automatically fails if any errors found
   - checkstyle.xml is automatically generated for easy Jenkins integration
+- Version
+  - Current web app version is injected in widow as webAppVersion
 
 ## License
 The MIT License (MIT)

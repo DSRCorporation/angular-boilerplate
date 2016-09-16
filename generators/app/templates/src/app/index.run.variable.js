@@ -5,10 +5,12 @@
 		.module('webAppNameWebApp')
 		.run(runBlock);
 
-	function runBlock($log, errorHelpers, $rootScope, $state<%if (backBtn) {%>, $timeout,
+	function runBlock($log, errorHelpers, $rootScope, $state, version<%if (backBtn) {%>, $timeout,
 	$location<%} if (scrollToTop) {%>, $document<%} if (detectScreenBottom) {%>,
 		$window<%} if (responsive) {%>, responsiveBreakpoints <%}%>) {
 		$log.debug('runBlock');
+
+		$window.webAppVersion = version;
 		<%if (backBtn) {%>
 		$rootScope.$on('$locationChangeSuccess', function () {
 			$rootScope.actualLocation = $location.path();

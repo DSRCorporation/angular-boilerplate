@@ -3,8 +3,8 @@
 
 	angular
 		.module('webAppNameWebApp')
-		// Version
-		.constant('version', '0.0.1')
+		// Version: automatically pulled from package.json by gulp
+		.constant('version', 'webAppNameWebAppVersion')
 		// Dialog buttons
 		.constant('dialogButtons', {
 			CANCEL: 0,

@@ -161,6 +161,9 @@ LESS styles are spread across the files:
   "angular-responsive-breakpoints": "^0.1.0",
   "flex-attr": "^0.1.2" 
   ```
+- Code validation
+  - Build in production mode automatically fails if any errors found
+  - checkstyle.xml is automatically generated for easy Jenkins integration
 
 ## License
 The MIT License (MIT)

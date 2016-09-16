@@ -1,22 +1,22 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular.module('webAppNameWebApp')
-    .controller('GlobalController',
-      function ($scope, $log) {
-        activate();
+	angular.module('webAppNameWebApp')
+		.controller('GlobalController',
+			function ($scope, $log) {
+				activate();
 
-        function activate() {
-          $log.debug('GlobalController.activate');
+				function activate() {
+					$log.debug('GlobalController.activate');
 
-          /* Example
-          _.assign($scope, {
-            param: paramValue
-          });*/
+					/* Example
+					 _.assign($scope, {
+					 param: paramValue
+					 });*/
 
-          $log.debug('GlobalController.activate -> done');
-        }
-      }
-    );
+					$log.debug('GlobalController.activate -> done');
+				}
+			}
+		);
 
 })();

@@ -1,52 +1,53 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular.module('webAppNameWebApp')
-    .component('dropdown', {
-      templateUrl: 'app/components/dropdown/dropdown.html',
-      controller: DropdownController,
-      require: {
-        form: '^^'
-      },
-      bindings: {
-        model: '=',
-        required: '<',
-        options: '<',
-        name: '@',
-        label: '@'
-      }
-    });
+	angular.module('webAppNameWebApp')
+		.component('dropdown', {
+			templateUrl: 'app/components/dropdown/dropdown.html',
+			controller: DropdownController,
+			require: {
+				form: '^^'
+			},
+			bindings: {
+				model: '=',
+				required: '<',
+				options: '<',
+				name: '@',
+				label: '@'
+			}
+		});
 
-  function DropdownController($log, $scope, randomString) {
-    var ctrl = this;
-    activate();
+	function DropdownController($log, $scope, randomString) {
+		var ctrl = this;
 
-    function activate() {
-      $log.debug('DropdownController.activate');
+		activate();
 
-      _.extend(ctrl, {
-        formName: 'dropdownForm' + randomString(32),
-        $onInit: init
-      });
+		function activate() {
+			$log.debug('DropdownController.activate');
 
-      $log.debug('DropdownController.activate -> done');
-    }
+			_.extend(ctrl, {
+				formName: 'dropdownForm' + randomString(32),
+				$onInit: init
+			});
 
-    function init() {
-      $log.debug('DropdownController.init');
+			$log.debug('DropdownController.activate -> done');
+		}
 
-      $scope.$watch(
-        function () {
-          return ctrl.form.$submitted;
-        },
-        function (newValue) {
-          if (newValue) {
-            $scope[ctrl.formName].$setSubmitted();
-          }
-        }
-      );
+		function init() {
+			$log.debug('DropdownController.init');
 
-      $log.debug('DropdownController.init -> done');
-    }
-  }
+			$scope.$watch(
+				function () {
+					return ctrl.form.$submitted;
+				},
+				function (newValue) {
+					if (newValue) {
+						$scope[ctrl.formName].$setSubmitted();
+					}
+				}
+			);
+
+			$log.debug('DropdownController.init -> done');
+		}
+	}
 })();

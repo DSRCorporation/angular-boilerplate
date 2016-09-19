@@ -182,7 +182,7 @@ Scripts are provided by default:
 - version-minor
 - version-major   
 
-Run a script with
+Run a script with (it's better to run them from Git Bash to avoid entering a password to your ssh key for every command)
 ```
 npm run version-patch
 npm run version-minor

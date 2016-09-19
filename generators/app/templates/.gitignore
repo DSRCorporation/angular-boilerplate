@@ -5,4 +5,5 @@ public
 .idea
 bower_components
 dist
-.xml
+*.xml
+*.log

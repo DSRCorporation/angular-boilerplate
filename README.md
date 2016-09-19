@@ -10,6 +10,7 @@
   - [LESS](#less)
   - [Optional features](#optional-features)
 - [Defaults](#defaults)
+- [Release scripts](#release-scripts)
 - [License](#license)
 
 ## Prerequisites
@@ -117,7 +118,7 @@ LESS styles are spread across the files:
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
 
-### Defaults
+## Defaults
 
 - BrowserSync
   - It is used only as a web server, syncing between browsers is disabled
@@ -164,6 +165,38 @@ LESS styles are spread across the files:
 - Code validation
   - Build in production mode automatically fails if any errors found
   - checkstyle.xml is automatically generated for easy Jenkins integration
+- Version
+  - Current web app version is injected in widow as webAppVersion
+
+## Release scripts
+
+These scripts automate version increment flow via a separate version-inc branch, helping you bring your latest changes to the master and put a tag on it.      
+
+Prerequisites:    
+- You have local develop and master branches
+- You have develop and master branhces in your origin
+- Current branch is develop with the latest changes merged in     
+
+Scripts are provided by default:    
+- version-patch
+- version-minor
+- version-major   
+
+Run a script with
+```
+npm run version-patch
+npm run version-minor
+npm run version-major
+```
+
+Each of these scripts follows the following flow:   
+- Creates a branch named 'version-inc' and checks it out
+- Increments version in package.json and bower.json
+- Pushes updated files to origin
+- Merges develop with version-inc branch
+- Deletes version-inc branch
+- Merges master with develop
+- Adds tag 'x.x.x' to master 
 
 ## License
 The MIT License (MIT)

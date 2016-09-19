@@ -1,17 +1,17 @@
 (function () {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('webAppNameWebApp')
-    .config(config);
+	angular
+		.module('webAppNameWebApp')
+		.config(config);
 
-  function config($logProvider, $locationProvider<% if (jwt) { %>, localStorageServiceProvider, $httpProvider<% } %>) {
-    $logProvider.debugEnabled(true);
-    $locationProvider.html5Mode(true);
-    <% if (jwt) { %>
-    localStorageServiceProvider.setPrefix('webAppName');
-    $httpProvider.interceptors.push('securityInterceptor');
-    <% } %>
-  }
+	function config($logProvider, $locationProvider<%if (jwt) {%>, localStorageServiceProvider, $httpProvider<%}%>) {
+		$logProvider.debugEnabled(true);
+		$locationProvider.html5Mode(true);
+		<%if (jwt) {%>
+		localStorageServiceProvider.setPrefix('webAppName');
+		$httpProvider.interceptors.push('securityInterceptor');
+		<%}%>
+	}
 
 })();

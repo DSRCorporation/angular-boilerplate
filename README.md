@@ -1,14 +1,29 @@
 # Yeoman generator for AngularJS by DSR Corporation    
 
+## Table of contents
+
+- [Prerequisites](#prerequisites)
+- [Install](#install)
+- [Run](#run)
+- [Architecture](#architecture)
+  - [Components and partials](#components-and-partials)
+  - [LESS](#less)
+  - [Optional features](#optional-features)
+- [Defaults](#defaults)
+- [Release scripts](#release-scripts)
+- [License](#license)
+
 ## Prerequisites
 
 - NPM    
 - Bower    
 - Yeoman      
+- ESLint    
 
 ## Install
 
 ```
+npm install generator-angular-dsr
 yo angular-dsr
 ```
 During the installation process you are going to be asked a few questions whether to include some features or not. 
@@ -98,10 +113,90 @@ LESS styles are spread across the files:
     - Injected in the $rootScope in the index.run.js and can be accessed across your whole app via screen.
 - Detect a browser back button click
   - Detects if a user clicks a browser back button providing a possibility to apply custom handler for this occasion in index.run.js.
-- Autoscroll to top
+- Autoscroll to the top
   - Overrides Angular's default preserve scroll position between states feature and scrolls a user's screen to the top on each state change.
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
+
+## Defaults
+
+- BrowserSync
+  - It is used only as a web server, syncing between browsers is disabled
+- Logging
+  - Debug mode is enabled in config
+- URLs
+  - HTML5 mode is enabled in config
+- Dialogs
+  - Constant with dialog close codes added to index.constants.js
+  ```
+  'dialogButtons', {
+      CANCEL: 0,
+      OK: 1,
+      YES: 2,
+      NO: 3
+    }
+  ```
+- Handling state change errors
+  - errorHelpers.handleBackendError is invoked if any error caught, redirect to your home page happens otherwise
+- Different constants for production, development and testing
+  - By default index.constants.development.js and index.constants.production.js are provided with 'apiRoot' constant injected
+- Dependencies' versions
+  - Bower
+  ```
+  "angular": "^1.5.8",
+  "angular-animate": "^1.5.5",
+  "angular-click-outside": "^2.8.3",
+  "angular-loading-bar": "^0.9.0",
+  "angular-messages": "^1.5.5",
+  "angular-resource": "^1.5.7",
+  "angular-sanitize": "^1.5.5",
+  "angular-ui-router": "^0.3.1",
+  "angular-ui-router.stateHelper": "^1.3.1",
+  "lodash": "^4.13.1",
+  "moment": "^2.14.1",
+  "moment-timezone": "^0.5.5",
+  "ngDialog": "^0.6.2",
+  "normalize-css": "^4.2.0",
+  "angular-local-storage": "^0.2.7",
+  "angular-random-string": "^0.1.0",
+  "angular-responsive-breakpoints": "^0.1.0",
+  "flex-attr": "^0.1.2" 
+  ```
+- Code validation
+  - Build in production mode automatically fails if any errors found
+  - checkstyle.xml is automatically generated for easy Jenkins integration
+- Version
+  - Current web app version is injected in widow as webAppVersion
+
+## Release scripts
+
+These scripts automate version increment flow via a separate version-inc branch, helping you bring your latest changes to the master and put a tag on it.      
+
+Prerequisites:    
+- You have local develop and master branches
+- You have develop and master branhces in your origin
+- Current branch is develop with the latest changes merged in     
+
+Scripts are provided by default:    
+- version-patch
+- version-minor
+- version-major   
+
+Run a script with (it's better to run them from Git Bash to avoid entering a password to your ssh key for every command)
+```
+npm run version-patch
+npm run version-minor
+npm run version-major
+```
+
+Each of these scripts follows the following flow:   
+- Creates a branch named 'version-inc' and checks it out
+- Increments version in package.json and bower.json
+- Pushes updated files to origin
+- Merges develop with version-inc branch
+- Deletes version-inc branch
+- Merges master with develop
+- Adds tag 'x.x.x' to master 
 
 ## License
 The MIT License (MIT)

@@ -1,29 +1,29 @@
 .radio {
-  cursor: pointer;
-  position: relative;
-  display: block;
+	cursor: pointer;
+	position: relative;
+	display: block;
 
-  &__marker {
-    display: inline-block;
-    border: 2px solid @mainColor;
-    border-radius: 50%;
-    height: @gridSmall;
-    width: @gridSmall;
-    margin-right: @gridSmall;
-    box-sizing: border-box;
-    vertical-align: middle;
-  }
+	&__marker {
+		display: inline-block;
+		border: 2px solid @mainColor;
+		border-radius: 50%;
+		height: @gridSmall;
+		width: @gridSmall;
+		margin-right: @gridSmall;
+		box-sizing: border-box;
+		vertical-align: middle;
+	}
 
-  &__text {
-    display: inline-block;
-    line-height: normal;
-    vertical-align: middle;
-  }
+	&__text {
+		display: inline-block;
+		line-height: normal;
+		vertical-align: middle;
+	}
 
-  input {
-    &:checked + .radio__marker {
-      background-color: @accentColor;
-      border-color: @accentColor;
-    }
-  }
+	input {
+		&:checked + .radio__marker {
+			background-color: @accentColor;
+			border-color: @accentColor;
+		}
+	}
 }

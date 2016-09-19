@@ -1,6 +1,5 @@
 var generators = require('yeoman-generator'),
 	replace = require('gulp-replace'),
-	condition = require('gulp-if'),
 	rename = require('gulp-rename');
 
 module.exports = generators.Base.extend({
@@ -12,7 +11,7 @@ module.exports = generators.Base.extend({
 					type: 'input',
 					name: 'name',
 					message: 'Your app name',
-					validate: function(input) {
+					validate: function (input) {
 						var validateExp = new RegExp('^[0-9a-z]+$', 'i');
 						return validateExp.test(input) ? true : 'The app name must consist only of latin letters and digits.';
 					},
@@ -70,6 +69,7 @@ module.exports = generators.Base.extend({
 			[
 				this.templatePath('**'),
 				this.templatePath('.*'),
+				this.templatePath('**/.*'),
 				'!' + this.templatePath('*.variable*'),
 				'!' + this.templatePath('*.*-addon*'),
 				'!' + this.templatePath('*.*-addon/**'),
@@ -89,8 +89,8 @@ module.exports = generators.Base.extend({
 		addons = addons.filter(function (addon) {
 			return config[addon] === true;
 		});
-		addons.forEach(function(addon) {
-			this.registerTransformStream(rename(function(path) {
+		addons.forEach(function (addon) {
+			this.registerTransformStream(rename(function (path) {
 				path.dirname = path.dirname.replace('.' + addon + '-addon', '');
 				path.basename = path.basename.replace('.' + addon + '-addon', '');
 				return path;
@@ -109,7 +109,7 @@ module.exports = generators.Base.extend({
 	copyingVariables: function () {
 		this.log('Copying variables');
 		var config = this.config.getAll();
-		this.registerTransformStream(rename(function(path) {
+		this.registerTransformStream(rename(function (path) {
 			path.basename = path.basename.replace('.variable', '');
 			return path;
 		}));
@@ -122,11 +122,11 @@ module.exports = generators.Base.extend({
 			config
 		);
 	},
-	install: function() {
+	install: function () {
 		this.log('Installing dependencies');
 		this.installDependencies();
 	},
-	end: function() {
+	end: function () {
 		this.log('Your angular app is ready! Run \'gulp serve\' to start it. More info available at https://github.com/DSRCorporation/angular-generator.');
 	}
 });

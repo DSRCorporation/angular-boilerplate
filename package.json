@@ -31,5 +31,5 @@
     "version-patch-b": "export CURR_VERSION_CMD=patch && npm run version-update-b",
     "version-minor-b": "export CURR_VERSION_CMD=minor && npm run version-update-b",
     "version-major-b": "export CURR_VERSION_CMD=major && npm run version-update-b"
-  },
+  }
 }

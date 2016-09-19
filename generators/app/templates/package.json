@@ -48,7 +48,11 @@
 		"wrench": "~1.5.8"
 	},
 	"scripts": {
-
+		"version-update-w": "git checkout -B version-inc && npm --no-git-tag-version version %CURR_VERSION_CMD% && git add package.json && git commit -m \"Version Inc NPM\" && bower --offline version %CURR_VERSION_CMD% && git push origin version-inc && npm run version-merge-w",
+		"version-merge-w": "git checkout develop && git merge --no-ff version-inc && git push origin develop && git branch -D version-inc && git push origin :version-inc && git tag -d v%npm_package_version% && git fetch origin && git checkout master && git merge --no-ff develop && git push origin master && git tag %npm_package_version% && git push origin %npm_package_version%",
+    "version-patch": "set CURR_VERSION_CMD=patch && npm run version-update-w",
+    "version-minor": "set CURR_VERSION_CMD=minor && npm run version-update-w",
+    "version-major": "set CURR_VERSION_CMD=major && npm run version-update-w"
 	},
 	"private": true
 }

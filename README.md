@@ -182,6 +182,13 @@ Scripts are provided by default:
 - version-minor
 - version-major   
 
+Run a script with
+```
+npm run version-patch
+npm run version-minor
+npm run version-major
+```
+
 Each of these scripts follows the following flow:   
 - Creates a branch named 'version-inc' and checks it out
 - Increments version in package.json and bower.json

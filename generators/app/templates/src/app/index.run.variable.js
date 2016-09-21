@@ -5,9 +5,9 @@
 		.module('webAppNameWebApp')
 		.run(runBlock);
 
-	function runBlock($log, errorHelpers, $rootScope, $state, version<%if (backBtn) {%>, $timeout,
-	$location<%} if (scrollToTop) {%>, $document<%} if (detectScreenBottom) {%>,
-		$window<%} if (responsive) {%>, responsiveBreakpoints <%}%>) {
+	function runBlock($log, errorHelpers, $rootScope, $state, version, $window<%if (backBtn) {%>, 
+		$timeout, $location<%} if (scrollToTop) {%>, $document,
+		<%} if (responsive) {%>, responsiveBreakpoints <%}%>) {
 		$log.debug('runBlock');
 
 		$window.webAppVersion = version;

@@ -188,6 +188,12 @@ npm run version-patch
 npm run version-minor
 npm run version-major
 ```
+For Unix-based systems add "-b" (for Bash) postfix:
+```
+npm run version-patch-b
+npm run version-minor-b
+npm run version-major-b
+```
 
 Each of these scripts follows the following flow:   
 - Creates a branch named 'version-inc' and checks it out

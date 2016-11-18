@@ -7,8 +7,8 @@
 @mainColor: #000000;
 @accentColor: #FFFFFF;
 
-@mainHoverColor: average(@mainColor, contrast(@mainColor));
-@accentHoverColor: average(@accentColor, contrast(@accentColor));
+@mainHoverColor: mix(@mainColor, contrast(@mainColor), 90%);
+@accentHoverColor: mix(@accentColor, contrast(@accentColor), 90%);
 
 @hoverColor: rgba(0, 0, 0, 0.1);
 

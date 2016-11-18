@@ -5,8 +5,8 @@
 		.module('webAppNameWebApp')
 		.run(runBlock);
 
-	function runBlock($log, errorHelpers, $rootScope, $state, version, $window<%if (backBtn) {%>, 
-		$timeout, $location<%} if (scrollToTop) {%>, $document,
+	function runBlock($log, errorHelpers, $rootScope, $state, version, $window<%if (backBtn) {%>,
+		$timeout, $location<%} if (scrollToTop) {%>, $document
 		<%} if (responsive) {%>, responsiveBreakpoints <%}%>) {
 		$log.debug('runBlock');
 
@@ -54,7 +54,7 @@
 		$rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
 			$log.error('runBlock -> $stateChangeError', event, toState, toParams, error);
 			if (error) {
-				return errorHelpers.handleBackendError(error);
+				return errorHelpers.handleBackendError($rootScope, error);
 			}
 			$state.go('global');
 		});

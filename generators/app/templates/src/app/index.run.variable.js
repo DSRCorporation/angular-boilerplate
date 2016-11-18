@@ -6,7 +6,7 @@
 		.run(runBlock);
 
 	function runBlock($log, errorHelpers, $rootScope, $state, version, $window<%if (backBtn) {%>,
-		$timeout, $location<%} if (scrollToTop) {%>, $document,
+		$timeout, $location<%} if (scrollToTop) {%>, $document
 		<%} if (responsive) {%>, responsiveBreakpoints <%}%>) {
 		$log.debug('runBlock');
 

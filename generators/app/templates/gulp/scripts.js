@@ -6,25 +6,22 @@
 		gulp = require('gulp'),
 		conf = require('./conf'),
 		env = require('./env'),
+		replaceables = require('./replaceables'),
 		browserSync = require('browser-sync'),
 		$ = require('gulp-load-plugins')();
 
 	gulp.task('annotate', function () {
-		var currentVersion,
-			packageJson = JSON.parse(fs.readFileSync('./package.json'));
-
-		currentVersion = packageJson.version;
-		return gulp.src(populateArrayWithIgnoreFiles([
-			path.join(conf.paths.src, '/app/**/*.module.js'),
-			path.join(conf.paths.src, '/app/**/*.js'),
-			path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
-			path.join('!' + conf.paths.src, '/app/**/*.mock.js')
-		]))
+		var ret = gulp.src(populateArrayWithIgnoreFiles([
+				path.join(conf.paths.src, '/app/**/*.module.js'),
+				path.join(conf.paths.src, '/app/**/*.js'),
+				path.join('!' + conf.paths.src, '/app/**/*.spec.js'),
+				path.join('!' + conf.paths.src, '/app/**/*.mock.js')
+			]))
 			.pipe($.ngAnnotate({
 				single_quotes: true // eslint-disable-line
-			}))
-			.pipe($.if(/index.constants.js$/, $.replace('webAppNameWebAppVersion', currentVersion)))
-			.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
+			}));
+		ret = populateReplaceables(ret);
+		return ret.pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
 	});
 
 	gulp.task('scripts', ['annotate'], function () {
@@ -44,4 +41,10 @@
 		return arr;
 	}
 
+	function populateReplaceables(pipeline) {
+		replaceables.forEach(function(replaceable) {
+			pipeline.pipe($.if(replaceable.constraint || true, $.replace(replaceable.target, replaceable.value())));
+		});
+		return pipeline;
+	}
 })();

@@ -23,7 +23,7 @@
 ## Install
 
 ```
-npm install generator-angular-dsr
+npm install -g generator-angular-dsr
 yo angular-dsr
 ```
 During the installation process you are going to be asked a few questions whether to include some features or not. 

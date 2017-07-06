@@ -2,15 +2,17 @@
 	"env": {
 		"browser": true
 	},
+  "parser": "babel-eslint",
 	"parserOptions": {
-		"ecmaVersion": 5,
-		"sourceType": "script"
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
 	},
 	"extends": "eslint:recommended",
 	"rules": {
 		"indent": [
 			"error",
-			"tab"
+			2
 		],
 		"quotes": [
 			"error",
@@ -26,10 +28,6 @@
 		],
 		"dot-notation": [
 			"error"
-		],
-		"strict": [
-			"error",
-			"function"
 		],
 		"array-bracket-spacing": [
 			"error",
@@ -51,7 +49,13 @@
 		],
 		"comma-dangle": [
 			"error",
-			"never"
+			{
+				"arrays": "always-multiline",
+				"objects": "always-multiline",
+				"imports": "always-multiline",
+				"exports": "always-multiline",
+				"functions": "always-multiline"
+			}
 		],
 		"comma-spacing": [
 			"error"

@@ -1,10 +1,6 @@
-(function () {
-	'use strict';
-
-	angular
-		.module('webAppNameWebApp')
-		// Site settings
-		.constant('apiSettings', {
-			apiRoot: 'https://backend/api/v1'
-		});
-})();
+angular
+  .module('webAppNameWebApp')
+  // Site settings
+  .constant('apiSettings', {
+    apiRoot: 'https://backend/api/v1',
+  });

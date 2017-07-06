@@ -1,27 +1,26 @@
-(function () {
-	'use strict';
+angular.module('webAppNameWebApp')
+  .factory('security', security);
 
-	angular.module('webAppNameWebApp')
-		.factory('security', function ($log, appResources, localStorageService, localStorageKeys) {
-			return {
-				signIn: signIn,
-				signOut: signOut,
-				isSignedIn: isSignedIn
-			};
+function security($log, appResources, localStorageService, localStorageKeys) {
+  const security = {
+    signIn: signIn,
+    signOut: signOut,
+    isSignedIn: isSignedIn,
+  };
 
-			function signIn() {
-				$log.debug('security.signIn');
-				// TODO: Implement me
-			}
+  function signIn() {
+    $log.debug('security.signIn');
+    // TODO: Implement me
+  }
 
-			function signOut() {
-				$log.debug('security.signOut');
-				localStorageService.remove(localStorageKeys.authToken);
-			}
+  function signOut() {
+    $log.debug('security.signOut');
+    localStorageService.remove(localStorageKeys.authToken);
+  }
 
-			function isSignedIn() {
-				return !!localStorageService.get(localStorageKeys.authToken);
-			}
+  function isSignedIn() {
+    return !!localStorageService.get(localStorageKeys.authToken);
+  }
 
-		});
-})();
+  return security;
+}

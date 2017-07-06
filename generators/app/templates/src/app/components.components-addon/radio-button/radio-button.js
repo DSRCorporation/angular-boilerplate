@@ -1,54 +1,44 @@
-(function () {
-	'use strict';
+angular.module('webAppNameWebApp')
+  .component('radioButton', {
+    templateUrl: 'app/components/radio-button/radio-button.html',
+    controller: RadioButtonController,
+    require: {
+      form: '^^',
+    },
+    bindings: {
+      model: '=',
+      label: '@',
+      value: '<',
+      required: '<',
+      disabled: '<',
+      name: '@',
+    },
+  });
 
-	angular.module('webAppNameWebApp')
-		.component('radioButton', {
-			templateUrl: 'app/components/radio-button/radio-button.html',
-			controller: RadioButtonController,
-			require: {
-				form: '^^'
-			},
-			bindings: {
-				model: '=',
-				label: '@',
-				value: '<',
-				required: '<',
-				disabled: '<',
-				name: '@'
-			}
-		});
+function RadioButtonController($log, $scope, randomString) {
+  const ctrl = this;
 
-	function RadioButtonController($log, $scope, randomString) {
-		var ctrl = this;
+  activate();
 
-		activate();
+  function activate() {
+    $log.debug('RadioButtonController.activate');
 
-		function activate() {
-			$log.debug('RadioButtonController.activate');
+    _.extend(ctrl, {
+      formName: `radioButtonForm${randomString(32)}`,
+      $onInit: init,
+    });
 
-			_.extend(ctrl, {
-				formName: 'radioButtonForm' + randomString(32),
-				$onInit: init
-			});
+    $log.debug('RadioButtonController.activate -> done');
+  }
 
-			$log.debug('RadioButtonController.activate -> done');
-		}
+  function init() {
+    $log.debug('RadioButtonController.init');
 
-		function init() {
-			$log.debug('RadioButtonController.init');
+    $scope.$watch(
+      () => ctrl.form.$submitted,
+      (newValue) => newValue && $scope[ctrl.formName].$setSubmitted(),
+    );
 
-			$scope.$watch(
-				function () {
-					return ctrl.form.$submitted;
-				},
-				function (newValue) {
-					if (newValue) {
-						$scope[ctrl.formName].$setSubmitted();
-					}
-				}
-			);
-
-			$log.debug('RadioButtonController.init -> done');
-		}
-	}
-})();
+    $log.debug('RadioButtonController.init -> done');
+  }
+}

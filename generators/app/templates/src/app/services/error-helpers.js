@@ -1,88 +1,85 @@
-(function () {
-	'use strict';
+angular.module('webAppNameWebApp')
+  .factory('errorHelpers', errorHelpers);
 
-	angular.module('webAppNameWebApp')
-		.factory('errorHelpers', function ($state, $log, dialogs, errorCodes) {
-			return {
-				handleBackendError: handleBackendError,
-				throwError: throwError,
-				mapBackendValidationError: mapBackendValidationError,
-				showCustomFieldError: showCustomFieldError
-			};
+function errorHelpers($state, $log, dialogs, errorCodes) {
+  const errorHelpers = {
+    handleBackendError: handleBackendError,
+    throwError: throwError,
+    mapBackendValidationError: mapBackendValidationError,
+    showCustomFieldError: showCustomFieldError,
+  };
 
-			// TODO: broadcast error to child components
-			function showCustomFieldError(scope, fieldError) {
-				scope.$broadcast('customFieldError', fieldError);
-			}
+  // TODO: broadcast error to child components
+  function showCustomFieldError(scope, fieldError) {
+    scope.$broadcast('customFieldError', fieldError);
+  }
 
-			function handleBackendError(scope, error, customHandler) {
-				$log.error('handleBackendError -> ', error);
+  function handleBackendError(scope, error, customHandler) {
+    $log.error('handleBackendError -> ', error);
 
-				if (error.data && error.data.code && customHandler && customHandler(scope, error)) {
-					$log.debug('handleBackendError -> error handled by custom handler');
-					return;
-				}
+    if (error.data && error.data.code && customHandler && customHandler(scope, error)) {
+      $log.debug('handleBackendError -> error handled by custom handler');
 
-				// TODO: Validate error and act accordingly its content
+    }
 
-				/* Example
-				 if (error && error.data && error.data.redirectData && error.data.redirectData.destination) {
-				 $log.debug('handleBackendError -> redirect');
-				 return $state.go(error.data.redirectData.destination, error.data.redirectData.params, {
-				 location: 'replace'
-				 });
-				 }
+    // TODO: Validate error and act accordingly its content
 
-				 if (error.data && error.data.code === errorCodes.VALIDATION_ERROR) {
-				 $log.debug('handleBackendError -> validation error');
+    // Example
+    /*if (error && error.data && error.data.redirectData && error.data.redirectData.destination) {
+     $log.debug('handleBackendError -> redirect');
+     return $state.go(error.data.redirectData.destination, error.data.redirectData.params, {
+     location: 'replace'
+     });
+     }
 
-				 if (scope && error.data.fields && error.data.fields.length) {
-				 _.forEach(error.data.fields, function (fieldError) {
-				 showCustomFieldError(scope, fieldError);
-				 });
-				 } else {
-				 dialogs.message(error.data.message);
-				 }
+     if (error.data && error.data.code === errorCodes.VALIDATION_ERROR) {
+     $log.debug('handleBackendError -> validation error');
 
-				 return;
-				 }
+     if (scope && error.data.fields && error.data.fields.length) {
+     return _.forEach(error.data.fields, function (fieldError) {
+     errorHelpers.showCustomFieldError(scope, fieldError);
+     });
+     }
 
-				 if (error.status && error.status <= 0) {
-				 $log.debug('handleBackendError -> connection error');
-				 dialogs.message('Connection error. Please try again.');
-				 return;
-				 }
+     return dialogs.message(error.data.message);
+     }
 
-				 $log.debug('handleBackendError -> unexpected error');
-				 dialogs.backendError(error);*/
-			}
+     if (error.status && error.status <= 0) {
+     $log.debug('handleBackendError -> connection error');
+     return dialogs.message('Connection error. Please try again.');
+     }
 
-			function throwError(code, message, redirect) {
-				var err = {
-					data: {
-						code: code,
-						message: message
-					}
-				};
+     $log.debug('handleBackendError -> unexpected error');
+     dialogs.backendError(error);*/
+  }
 
-				if (redirect) {
-					err.data.redirect = redirect;
-				}
+  function throwError(code, message, redirect) {
+    let err = {
+      data: {
+        code: code,
+        message: message,
+      },
+    };
 
-				throw _.assign(new Error(), err);
-			}
+    if (redirect) {
+      err.data.redirect = redirect;
+    }
 
-			function mapBackendValidationError(error, scope, fieldMap) {
-				$log.error('mapBackendValidationError -> ', error);
+    throw _.assign(new Error(), err);
+  }
 
-				if (error.data && error.data.fields) {
-					error.data.fields = _.map(error.data.fields, function (value) {
-						value.name = fieldMap[value.name] || value.name;
-						return value;
-					});
-				}
+  function mapBackendValidationError(error, scope, fieldMap) {
+    $log.error('mapBackendValidationError -> ', error);
 
-				handleBackendError(error, scope);
-			}
-		});
-})();
+    if (error.data && error.data.fields) {
+      error.data.fields = _.map(error.data.fields, function (value) {
+        value.name = fieldMap[value.name] || value.name;
+        return value;
+      });
+    }
+
+    errorHelpers.handleBackendError(error, scope);
+  }
+
+  return errorHelpers;
+}

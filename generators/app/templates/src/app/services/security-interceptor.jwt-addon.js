@@ -1,31 +1,31 @@
-(function () {
-	'use strict';
+angular.module('webAppNameWebApp')
+  .factory('securityInterceptor', securityInterceptor);
 
-	angular.module('webAppNameWebApp')
-		.factory('securityInterceptor', function (localStorageService, localStorageKeys) {
-			return {
-				request: request,
-				response: response
-			};
+function securityInterceptor(localStorageService, localStorageKeys) {
+  const securityInterceptor = {
+    request: request,
+    response: response,
+  };
 
-			function request(config) {
-				var authToken = localStorageService.get(localStorageKeys.authToken);
+  function request(config) {
+    let authToken = localStorageService.get(localStorageKeys.authToken);
 
-				if (authToken) {
-					config.headers.Authorization = 'Bearer ' + authToken;
-				}
+    if (authToken) {
+      config.headers.Authorization = `Bearer ${authToken}`;
+    }
 
-				return config;
-			}
+    return config;
+  }
 
-			function response(response) {
-				var authorizationHeader = response.headers('Authorization');
+  function response(response) {
+    let authorizationHeader = response.headers('Authorization');
 
-				if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
-					localStorageService.set(localStorageKeys.authToken, authorizationHeader.replace('Bearer ', ''));
-				}
+    if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
+      localStorageService.set(localStorageKeys.authToken, authorizationHeader.replace('Bearer ', ''));
+    }
 
-				return response;
-			}
-		});
-})();
+    return response;
+  }
+
+  return securityInterceptor;
+}

@@ -1,24 +1,19 @@
 /* eslint-env node */
-(function () {
-	'use strict';
+'use strict'; // eslint-disable-line
 
-	/**
-	 *  Welcome to your gulpfile!
-	 *  The gulp tasks are split in several files in the gulp directory
-	 *  because putting all here was really too long
-	 */
+/**
+ *  Welcome to your gulpfile!
+ *  The gulp tasks are split in several files in the gulp directory
+ *  because putting all here was really too long
+ */
 
-	var gulp = require('gulp'),
-		wrench = require('wrench');
+const gulp = require('gulp'), // eslint-disable-line
+  wrench = require('wrench');
 
-	/**
-	 *  This will load all js or coffee files in the gulp directory
-	 *  in order to load all gulp tasks
-	 */
-	wrench.readdirSyncRecursive('./gulp').filter(function (file) {
-		return (/\.(js|coffee)$/i).test(file);
-	}).map(function (file) {
-		require('./gulp/' + file);
-	});
-
-})();
+/**
+ *  This will load all js or coffee files in the gulp directory
+ *  in order to load all gulp tasks
+ */
+wrench.readdirSyncRecursive('./gulp')
+  .filter((file) => (/\.(js|coffee)$/i).test(file))
+  .map((file) => require('./gulp/' + file));

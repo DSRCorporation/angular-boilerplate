@@ -1,12 +1,12 @@
 import angular from 'angular'
-import constants from 'constants'
 
 /* @ngInject */
 function runBlock ($log, errorHelpers, $rootScope, $state, $window, $timeout, $location, $document,
   responsiveBreakpoints, $transitions) {
   $log.debug('runBlock')
 
-  $window.webAppVersion = constants.version
+  $window.appVersion = APP_VERSION
+
   $rootScope.$on('$locationChangeSuccess', () => {
     $rootScope.actualLocation = $location.path()
     return $rootScope.actualLocation

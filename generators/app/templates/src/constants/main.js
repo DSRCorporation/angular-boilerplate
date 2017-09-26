@@ -1,5 +1,4 @@
 export default {
-  version: '12WebAppVersion',
   dialogButtons: {
     CANCEL: 0,
     OK: 1,

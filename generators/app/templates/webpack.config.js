@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -127,6 +128,10 @@ module.exports = {
       module: packageJson.name
     }),
     new ExtractTextPlugin({filename: '[contenthash].styles.css'}),
-    new StringReplacePlugin()
+    new StringReplacePlugin(),
+    new webpack.DefinePlugin({
+      'APP_VERSION': JSON.stringify(packageJson.version),
+      'APP_ENV': JSON.stringify('development')
+    })
   ]
 }

@@ -16,9 +16,8 @@
 ## Prerequisites
 
 - NPM    
-- Bower    
-- Yeoman      
-- ESLint    
+- YARN    
+- Yeoman    
 
 ## Install
 
@@ -31,43 +30,31 @@ When Yeoman generates the app it's going to install Bower and NPM dependency for
 
 ## Run
 
-Serve your app with [BrowserSync](https://www.browsersync.io/) in development mode
+Serves your app with [WebPack Dev Server](https://webpack.github.io/docs/webpack-dev-server.html) in development mode
 ```
-gulp serve
-```
-
-Serve your app in production mode
-```
-gulp serve:dist
+npm start
 ```
 
 Build your app for production
 ```
-gulp build
+npm build
 ```
 
 ## Architecture
 
 The app is represented with six groups of files:
-- components    
+- components 
+- containers       
+- constants    
 - dialogs    
-- less    
-- partials    
 - services    
+- routes    
+- styles      
 - core (located in the root)   
 
-### Components and partials
+### Components and containers
 
-Partials are the main content of your app. With ui-router binding routes to specific partials you get the state tree an end-user walks back and forth.
-Each partial folder contains a controller (in rare cases controller could be missing) and a template.
-
-Components group is a set of folders, each one of these contains a component's controller, a template and specific styles (optional).
-It's recommended to create a component for any duplicate UI in order to keep your app consistent. 
-
-As AngularJS' documentation states 
-> Ideally, the whole application should be a tree of components that implement clearly defined inputs and outputs, and minimize two-way data binding. That way, it's easier to predict when data changes and what the state of a component is. 
-
-During a real world adaptation, it's been decided to keep the components only for a duplicate UI. It's been decided to allow two-way binding for primitive components which basically wrap native inputs, textboxes, selects, checkboxes and radio-buttons.
+Components and containers define your view layer. As components are concerned more with how things look, containers are bothered with how they work. There's a great [article by Dan Abramov on this topic](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0).
 
 ### LESS
 
@@ -91,10 +78,10 @@ LESS styles are spread across the files:
   - Set of styles for your inputs and forms.
 - modificators
   - Set of common styles could be applied across your whole app. It includes sets of styles for usual margins/paddings, font and background colors, heights and widths corresponding your grid and etc.
-- style
-  - Your custom styles
 
-### Optional features
+These are app wide styles which create your general CSS framework.
+
+### Features
 
 - JWT support
   - security
@@ -108,7 +95,6 @@ LESS styles are spread across the files:
   - radio-button
   - svg-icon
 - Set of tools to develop responsive UI
-  - [flex-attr](https://github.com/keenondrums/flex-attr)
   - [angular-responsive-breakpoints](https://github.com/keenondrums/angular-responsive-breakpoints) 
     - Injected in the $rootScope in the index.run.js and can be accessed across your whole app via screen.
 - Detect a browser back button click
@@ -120,8 +106,6 @@ LESS styles are spread across the files:
 
 ## Defaults
 
-- BrowserSync
-  - It is used only as a web server, syncing between browsers is disabled
 - Logging
   - Debug mode is enabled in config
 - URLs
@@ -139,34 +123,31 @@ LESS styles are spread across the files:
 - Handling state change errors
   - errorHelpers.handleBackendError is invoked if any error caught, redirect to your home page happens otherwise
 - Different constants for production, development and testing
-  - By default index.constants.development.js and index.constants.production.js are provided with 'apiRoot' constant injected
+  - By default development and production constants are provided with 'apiRoot' injected
 - Dependencies' versions
-  - Bower
+  - NPM
   ```
-  "angular": "^1.5.8",
-  "angular-animate": "^1.5.5",
-  "angular-click-outside": "^2.8.3",
-  "angular-loading-bar": "^0.9.0",
-  "angular-messages": "^1.5.5",
-  "angular-resource": "^1.5.7",
-  "angular-sanitize": "^1.5.5",
-  "angular-ui-router": "^0.3.1",
-  "angular-ui-router.stateHelper": "^1.3.1",
-  "lodash": "^4.13.1",
-  "moment": "^2.14.1",
-  "moment-timezone": "^0.5.5",
-  "ngDialog": "^0.6.2",
-  "normalize-css": "^4.2.0",
-  "angular-local-storage": "^0.2.7",
-  "angular-random-string": "^0.1.0",
-  "angular-responsive-breakpoints": "^0.1.0",
-  "flex-attr": "^0.1.2" 
+  "@iamadamjowett/angular-click-outside": "^2.10.1"
+  "@uirouter/angularjs": "^1.0.6"
+  "angular": "^1.6.6"
+  "angular-animate": "^1.6.6"
+  "angular-loading-bar": "^0.9.0"
+  "angular-local-storage": "^0.7.1"
+  "angular-messages": "^1.6.6"
+  "angular-resource": "^1.6.6"
+  "angular-responsive-breakpoints": "^0.2.0"
+  "angular-sanitize": "^1.6.6"
+  "lodash": "^4.17.4"
+  "moment": "^2.18.1"
+  "moment-timezone": "^0.5.13"
+  "ng-dialog": "^1.4.0"
+  "normalize-css": "^2.3.1"
+  "randomstring": "^1.1.5
   ```
 - Code validation
-  - Build in production mode automatically fails if any errors found
-  - checkstyle.xml is automatically generated for easy Jenkins integration
+  - Build automatically fails if any errors found
 - Version
-  - Current web app version is injected in widow as webAppVersion
+  - Current web app version is injected in widow as appVersion
 
 ## Release scripts
 

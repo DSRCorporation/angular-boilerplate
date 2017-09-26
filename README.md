@@ -104,7 +104,15 @@ These are app wide styles which create your general CSS framework.
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
 - A script to upgrade all dependencies    
-  - Run 'npm run upgrade-dependencies'    
+  - Run 'npm run upgrade-dependencies' 
+ 
+## ES6 support
+
+We run babel with [env preset](https://babeljs.io/docs/plugins/preset-env/), [object spread](https://babeljs.io/docs/plugins/transform-object-rest-spread/) and [class properties](https://babeljs.io/docs/plugins/transform-class-properties/) support under the hood.
+
+## Code Validation
+
+[StandardJS](https://standardjs.com/) is hooked up to validate the code. We srongly discourage using ESLint with custom presets as it leads to inconsistent code style across your projects. 
 
 ## Defaults
 

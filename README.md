@@ -103,6 +103,8 @@ These are app wide styles which create your general CSS framework.
   - Overrides Angular's default preserve scroll position between states feature and scrolls a user's screen to the top on each state change.
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
+- A script to upgrade all dependencies    
+  - Run 'npm run upgrade-dependencies'    
 
 ## Defaults
 

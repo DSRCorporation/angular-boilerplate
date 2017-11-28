@@ -1,0 +1,14 @@
+<form class="cat-page" name="catCreationCtrl.catForm" ng-submit="catCreationCtrl.createCat()" novalidate>
+  <div class="cat-page__header">
+    <label class="cat-page__header__left">Create Cat</label>
+
+    <div class="cat-page__header__right">
+      <button class="button" type="submit">
+        Create
+      </button>
+    </div>
+  </div>
+
+  <cat-presentation cat="catCreationCtrl.cat" is-editing="true"></cat-presentation>
+</form>
+

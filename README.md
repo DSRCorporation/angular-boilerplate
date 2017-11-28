@@ -1,4 +1,4 @@
-# Yeoman generator for AngularJS by DSR Corporation    
+# AngularJS sample app by DSR Corporation    
 
 ## Table of contents
 
@@ -18,28 +18,24 @@
 ## Prerequisites
 
 - NPM    
-- YARN    
-- Yeoman    
+- YARN  
 
 ## Install
 
 ```
-npm install -g generator-angular-dsr
-yo angular-dsr
+yarn
 ```
-During the installation process you are going to be asked a few questions whether to include some features or not. 
-When Yeoman generates the app it's going to install Bower and NPM dependency for you.
 
 ## Run
 
 Serves your app with [WebPack Dev Server](https://webpack.github.io/docs/webpack-dev-server.html) in development mode
 ```
-npm start
+yarn start
 ```
 
 Build your app for production
 ```
-npm build
+yarn build
 ```
 
 ## Architecture
@@ -99,6 +95,7 @@ These are app wide styles which create your general CSS framework.
 - Set of tools to develop responsive UI
   - [angular-responsive-breakpoints](https://github.com/keenondrums/angular-responsive-breakpoints) 
     - Injected in the $rootScope in the index.run.js and can be accessed across your whole app via screen.
+- Decorator for $recource: adds server URL prefix, adds update method and adds $promiseHandled() method for automatic error handling
 - Detect a browser back button click
   - Detects if a user clicks a browser back button providing a possibility to apply custom handler for this occasion in index.run.js.
 - Autoscroll to the top
@@ -106,7 +103,9 @@ These are app wide styles which create your general CSS framework.
 - Detect if a user scrolls all the way to the bottom
   - Broadcasts 'ui.scrollbarIsOnBottom' if a scrollbar is on the bottom of the screen
 - A script to upgrade all dependencies    
-  - Run 'npm run upgrade-dependencies' 
+  - Run 'yarn upgrade-dependencies' 
+- A linting script
+  - Run 'yarn lint'
  
 ## ES6 support
 
@@ -136,26 +135,6 @@ We run babel with [env preset](https://babeljs.io/docs/plugins/preset-env/), [ob
   - errorHelpers.handleBackendError is invoked if any error caught, redirect to your home page happens otherwise
 - Different constants for production, development and testing
   - By default development and production constants are provided with 'apiRoot' injected
-- Dependencies' versions
-  - NPM
-  ```
-  "@iamadamjowett/angular-click-outside": "^2.10.1"
-  "@uirouter/angularjs": "^1.0.6"
-  "angular": "^1.6.6"
-  "angular-animate": "^1.6.6"
-  "angular-loading-bar": "^0.9.0"
-  "angular-local-storage": "^0.7.1"
-  "angular-messages": "^1.6.6"
-  "angular-resource": "^1.6.6"
-  "angular-responsive-breakpoints": "^0.2.0"
-  "angular-sanitize": "^1.6.6"
-  "lodash": "^4.17.4"
-  "moment": "^2.18.1"
-  "moment-timezone": "^0.5.13"
-  "ng-dialog": "^1.4.0"
-  "normalize-css": "^2.3.1"
-  "randomstring": "^1.1.5
-  ```
 - Code validation
   - Build automatically fails if any errors found
 - Version

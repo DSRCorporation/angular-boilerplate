@@ -1,2 +1,9 @@
 node_modules
+public
+.tmp
+.sass-cache
 .idea
+bower_components
+dist
+*.xml
+*.log

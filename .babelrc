@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    [
+      "angularjs-annotate",
+      {
+        "explicitOnly": true
+      }
+    ],
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    "syntax-dynamic-import",
+    "angularjs-annotate",
+    "syntax-decorators",
+    "ng-annotate",
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+<div class="cat">
+  <div class="cat__field">
+    <div>
+      Name:
+    </div>
+    <div class="text-input">
+      <input ng-readonly="!$ctrl.isEditing" name="name" required ng-model="$ctrl.cat.name" />
+      <error input="name"></error>
+    </div>
+  </div>
+
+  <div class="cat__field">
+    <div>
+      Boss:
+    </div>
+    <div class="text-input">
+      <input ng-readonly="!$ctrl.isEditing" name="bossName" required ng-model="$ctrl.cat.bossName" />
+      <error input="bossName"></error>
+    </div>
+  </div>
+
+  <div class="cat__field">
+    <div>
+      Birth Date:
+    </div>
+    <div class="text-input">
+      <input required ng-readonly="!$ctrl.isEditing" ng-model="$ctrl.cat.birthDate" />
+      <error input="birthDate"></error>
+    </div>
+  </div>
+</div>
+

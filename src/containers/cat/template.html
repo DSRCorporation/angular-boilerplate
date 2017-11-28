@@ -1,0 +1,22 @@
+<form class="cat-page" name="catCtrl.catForm" ng-submit="catCtrl.saveCat()" novalidate>
+  <div class="cat-page__header">
+    <label class="cat-page__header__left">Cat info</label>
+
+    <div class="cat-page__header__right">
+      <button class="button" ng-if="!catCtrl.isEditing" type="button" ng-click="catCtrl.isEditing = true">
+        Edit
+      </button>
+
+      <button class="button" ng-if="catCtrl.isEditing" type="submit">
+        Save
+      </button>
+
+      <button class="button" ng-if="catCtrl.isEditing" type="button" ng-click="catCtrl.deleteCat()">
+        Delete
+      </button>
+    </div>
+  </div>
+
+  <cat-presentation cat="catCtrl.cat" is-editing="catCtrl.isEditing"></cat-presentation>
+</form>
+

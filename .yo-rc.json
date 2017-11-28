@@ -1,0 +1,11 @@
+{
+  "generator-angular-dsr": {
+    "name": "12",
+    "jwt": true,
+    "components": true,
+    "responsive": true,
+    "backBtn": true,
+    "scrollToTop": true,
+    "detectScreenBottom": true
+  }
+}

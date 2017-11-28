@@ -1,0 +1,32 @@
+.cats {
+  &__header {
+    height: @gridLarge;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 @gridExtraSmall;
+    border-bottom: solid 1px @borderColor;
+
+    &__header__left {
+      font-size: @fontSizeSuperLarge;
+    }
+
+    &__header__right {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+    padding: @gridExtraSmall;
+    div {
+      padding-bottom: @gridSuperSmall;
+    }
+
+    &:hover {
+      background-color: @accentHoverColor;
+    }
+  }
+}

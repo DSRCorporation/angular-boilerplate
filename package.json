@@ -1,35 +1,82 @@
 {
-  "name": "generator-angular-dsr",
-  "version": "0.3.0",
-  "description": "Yeoman generator for AngularJS by DSR Corporation",
-  "files": [
-    "generators/app"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DSRCorporation/angular-generator.git"
-  },
-  "homepage": "https://github.com/DSRCorporation/angular-generator#readme",
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "author": "DSR Corporation",
-  "license": "MIT",
+  "name": "angularjs-sample-project-dsr",
+  "version": "1.0.0",
   "dependencies": {
-    "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.5.4",
-    "yeoman-generator": "^2.0.0"
+    "@iamadamjowett/angular-click-outside": "^2.10.1",
+    "@uirouter/angularjs": "^1.0.11",
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-loading-bar": "^0.9.0",
+    "angular-local-storage": "^0.7.1",
+    "angular-messages": "^1.6.7",
+    "angular-resource": "^1.6.6",
+    "angular-responsive-breakpoints": "^0.2.0",
+    "angular-sanitize": "^1.6.6",
+    "babel-runtime": "^6.26.0",
+    "flex-attr": "^0.1.3",
+    "install": "^0.10.1",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "ng-dialog": "^1.4.0",
+    "normalize-css": "^2.3.1",
+    "npm": "^5.4.1",
+    "randomstring": "^1.1.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-angularjs-annotate": "^0.8.0",
+    "babel-plugin-ng-annotate": "^0.3.2",
+    "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "glob": "^7.1.2",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "npm-check-updates": "^2.12.1",
+    "postcss-loader": "^2.0.6",
+    "standard": "^10.0.3",
+    "standard-loader": "^6.0.1",
+    "string-replace-webpack-plugin": "^0.1.3",
+    "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0"
   },
   "scripts": {
-    "version-update-w": "git checkout -B version-inc && npm --no-git-tag-version version %CURR_VERSION_CMD% && git add package.json && git commit -m \"Version Inc %CURR_VERSION_CMD%\" && git push origin version-inc && npm run version-merge-w",
-    "version-merge-w": "git checkout develop && git merge --no-ff version-inc && git push origin develop && git branch -D version-inc && git push origin :version-inc && git fetch origin && git checkout master && git merge --no-ff develop && git push origin master && git tag %npm_package_version% && git push origin %npm_package_version%",
-    "version-update-b": "git checkout -B version-inc && npm --no-git-tag-version version $CURR_VERSION_CMD && git add package.json && git commit -m \"Version Inc $CURR_VERSION_CMD\" && git push origin version-inc && npm run version-merge-b",
-    "version-merge-b": "git checkout develop && git merge --no-ff version-inc && git push origin develop && git branch -D version-inc && git push origin :version-inc && git fetch origin && git checkout master && git merge --no-ff develop && git push origin master && git tag $npm_package_version && git push origin $npm_package_version",
+    "version-update-w": "git checkout -B version-inc && npm --no-git-tag-version version %CURR_VERSION_CMD% && git add package.json && git commit -m \"Version Inc NPM\" && bower --offline version %CURR_VERSION_CMD% && git push origin version-inc && npm run version-merge-w",
+    "version-merge-w": "git checkout develop && git merge --no-ff version-inc && git push origin develop && git branch -D version-inc && git push origin :version-inc && git tag -d v%npm_package_version% && git fetch origin && git checkout master && git merge --no-ff develop && git push origin master && git tag %npm_package_version% && git push origin %npm_package_version%",
+    "version-update-b": "git checkout -B version-inc && npm --no-git-tag-version version $CURR_VERSION_CMD && git add package.json && git commit -m \"Version Inc NPM\" && bower --offline version $CURR_VERSION_CMD && git push origin version-inc && npm run version-merge-b",
+    "version-merge-b": "git checkout develop && git merge --no-ff version-inc && git push origin develop && git branch -D version-inc && git push origin :version-inc && git tag -d v$npm_package_version && git fetch origin && git checkout master && git merge --no-ff develop && git push origin master && git tag $npm_package_version && git push origin $npm_package_version",
     "version-patch": "set CURR_VERSION_CMD=patch && npm run version-update-w",
     "version-minor": "set CURR_VERSION_CMD=minor && npm run version-update-w",
     "version-major": "set CURR_VERSION_CMD=major && npm run version-update-w",
     "version-patch-b": "export CURR_VERSION_CMD=patch && npm run version-update-b",
     "version-minor-b": "export CURR_VERSION_CMD=minor && npm run version-update-b",
-    "version-major-b": "export CURR_VERSION_CMD=major && npm run version-update-b"
-  }
+    "version-major-b": "export CURR_VERSION_CMD=major && npm run version-update-b",
+    "upgrade-dependencies": "ncu -a && yarn install",
+    "start": "./node_modules/.bin/webpack-dev-server --colors --open --config webpack.dev.js",
+    "start-prod": "./node_modules/.bin/webpack-dev-server --colors --open --config webpack.prod.js",
+    "build": "./node_modules/.bin/webpack --config webpack.prod.js",
+    "lint": "./node_modules/.bin/standard"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": [
+      "angular",
+      "_"
+    ]
+  },
+  "private": true
 }

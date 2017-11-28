@@ -1,0 +1,23 @@
+<div class="login">
+  <img class="background" src="{{ $ctrl.cat }}">
+
+  <form name="$ctrl.loginForm" novalidate ng-submit="$ctrl.signIn()">
+    <div class="text-input">
+      <div class="text-input__label">Login</div>
+      <input ng-model="$ctrl.credentials.login" class="margin-bottom" type="text" name="login" required/>
+      <error input="login" class="margin-top"></error>
+    </div>
+
+    <div class="text-input">
+      <div class="text-input__label">Password</div>
+      <input ng-model="$ctrl.credentials.password" class="margin-bottom" type="password" name="password" required/>
+      <error input="password" class="margin-top"></error>
+    </div>
+
+    <button class="button" type="submit">
+      Sign In
+    </button>
+
+  </form>
+
+</div>

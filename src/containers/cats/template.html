@@ -1,0 +1,23 @@
+<div class="cats">
+  <div class="cats__header">
+    <label class="cats__header__left">
+      Cats
+    </label>
+    <button class="cats__header__right button" ui-sref="global.main.cat-create">
+      Add New
+    </button>
+  </div>
+
+  <div class="cats__item" ng-click="$ctrl.viewCat(cat)" ng-repeat="cat in $ctrl.cats.cats">
+    <div>
+      Name: {{cat.name}}
+    </div>
+    <div>
+      Boss: {{cat.bossName}}
+    </div>
+    <div>
+      Birth Date: {{cat.birthDate}}
+    </div>
+  </div>
+</div>
+

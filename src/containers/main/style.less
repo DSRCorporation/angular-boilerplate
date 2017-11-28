@@ -1,0 +1,20 @@
+.header {
+  height: @gridLarge;
+  border-bottom: solid 1px @borderColor;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 @gridSmall;
+  background-color: @blueColor;
+  color: @accentColor;
+
+  &__left {
+    margin-right: @gridSmall;
+    cursor: pointer;
+  }
+
+  &__right {
+    margin-left: auto;
+    cursor: pointer;
+  }
+}

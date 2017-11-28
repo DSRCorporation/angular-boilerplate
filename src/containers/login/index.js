@@ -13,13 +13,9 @@ class LoginController {
       return
     }
 
-    try {
-      await this.security.signIn(this.credentials)
-      this.$log.debug('signIn -> success')
-      this.$state.go('global.main.cats')
-    } catch (e) {
-      this.errorHelpers.handleBackendError(this.$scope, e)
-    }
+    await this.security.signIn(this.credentials)
+    this.$log.debug('signIn -> success')
+    this.$state.go('global.main.cats')
   }
 }
 

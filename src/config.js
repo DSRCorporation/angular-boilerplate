@@ -1,8 +1,8 @@
 /* @ngInject */
 function config ($logProvider, $locationProvider, localStorageServiceProvider, $httpProvider) {
-  $logProvider.debugEnabled('12WebAppDebugEnabled')
+  $logProvider.debugEnabled(process.env.NODE_ENV !== 'production')
   $locationProvider.html5Mode(true)
-  localStorageServiceProvider.setPrefix('12')
+  localStorageServiceProvider.setPrefix('angularjs-sample-project-dsr')
   $httpProvider.interceptors.push('securityInterceptor')
 }
 

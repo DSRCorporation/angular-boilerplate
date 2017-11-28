@@ -9,7 +9,7 @@ class ErrorController {
 
     this.errorMessages = errorMessages
 
-    this.$scope.$on('customFieldError', function (event, field) {
+    this.$scope.$on('customFieldError', (event, field) => {
       if (field.name === this.input) {
         let input = this.form[this.input]
 

@@ -1,4 +1,4 @@
-<form class="cat-page" name="catCreationCtrl.catForm" ng-submit="catCreationCtrl.createCat()" novalidate>
+<form class="cat-page" name="$ctrl.catForm" ng-submit="$ctrl.createCat()" novalidate>
   <div class="cat-page__header">
     <label class="cat-page__header__left">Create Cat</label>
 
@@ -9,6 +9,6 @@
     </div>
   </div>
 
-  <cat-presentation cat="catCreationCtrl.cat" is-editing="true"></cat-presentation>
+  <cat-display cat="$ctrl.cat" is-editing="true" update-cat="$ctrl.updateCatData(catData)"></cat-display>
 </form>
 

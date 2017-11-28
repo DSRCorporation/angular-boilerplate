@@ -1,7 +1,8 @@
-import {version} from 'app-constants'
+import { version } from 'app-constants'
+import { RejectType } from '@uirouter/core'
 
 /* @ngInject */
-function runBlock ($log, errorHelpers, $rootScope, $state, $window, $timeout, $location, $document,
+function runBlock ($log, errorHelpers, $rootScope, $window, $timeout, $location, $document,
   responsiveBreakpoints, $transitions) {
   $log.debug('runBlock')
 
@@ -16,7 +17,7 @@ function runBlock ($log, errorHelpers, $rootScope, $state, $window, $timeout, $l
     (newLocation) => ($rootScope.actualLocation === newLocation) && ($rootScope.backButtonPressed = true)
   )
 
-  $transitions.onSuccess({}, function (transition) {
+  $transitions.onSuccess({}, (transition) => {
     $log.debug('runBlock -> Transition success', transition)
     $timeout(function () {
       if ($rootScope.backButtonPressed) {
@@ -27,18 +28,20 @@ function runBlock ($log, errorHelpers, $rootScope, $state, $window, $timeout, $l
     $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0
   })
 
-  $transitions.onError({}, function (transition) {
+  const handleErrorTypes = [ RejectType.ERROR, RejectType.INVALID ]
+  $transitions.onError({}, (transition) => {
     $log.debug('runBlock -> Transition error', transition)
-    let error = transition.error()
-    error.data = error.detail.data
+    const error = transition.error()
 
-    if (error) {
-      return errorHelpers.handleBackendError($rootScope, error)
+    if (!handleErrorTypes.includes(error.type)) {
+      $log.debug('runBlock -> Transition error is not of required type', error.type)
+      return
     }
-    $state.go('global')
+
+    return errorHelpers.handleBackendError($rootScope, error.detail)
   })
 
-  angular.element($window).bind('scroll', function () {
+  angular.element($window).bind('scroll', () => {
     if (this.document.body.scrollTop + this.document.body.clientHeight >= this.document.body.scrollHeight) {
       $rootScope.$broadcast('ui.scrollbarIsOnBottom')
     }

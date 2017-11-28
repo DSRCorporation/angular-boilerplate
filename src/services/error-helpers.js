@@ -2,7 +2,7 @@ import constants from 'app-constants' //eslint-disable-line
 import { forEach } from 'lodash'
 
 // eslint-disable-next-line
-@Inject('$state', '$log', 'dialogs', 'toaster')
+@Inject('$state', '$log', 'dialogs')
 class ErrorHelpers {
   showCustomFieldError = (scope, fieldError) => scope.$broadcast('customFieldError', fieldError)
 
@@ -17,8 +17,7 @@ class ErrorHelpers {
     if (error.data && error.data.code === constants.errorCodes.UNAUTHORIZED_ERROR) {
       this.$log.debug('handleBackendError -> authorization error')
       this.showError(error.data.message)
-      this.$state.go('global.login')
-      return
+      return this.$state.go('global.login')
     }
 
     if (error.data && error.data.code === constants.errorCodes.VALIDATION_ERROR) {
@@ -44,7 +43,7 @@ class ErrorHelpers {
       this.showError(error.data.message)
       return
     }
-    
+
     this.showError(error)
   }
 
@@ -73,12 +72,7 @@ class ErrorHelpers {
     this.handleBackendError(error, scope)
   }
 
-  showError = (msg) => this.toaster.pop({
-    type: 'error',
-    title: 'Error',
-    body: msg,
-    timeout: constants.timeouts.toaster
-  })
+  showError = this.dialogs.message
 }
 
 export default ErrorHelpers

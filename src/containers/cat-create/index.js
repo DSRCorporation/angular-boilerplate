@@ -8,20 +8,19 @@ class CatCreationController {
       return
     }
 
-    try {
-      let cat = await this.appResources.Cat.save(this.cat).$promise
+    const cat = await this.appResources.Cat.save(null, this.cat).$promiseHandled(this.$scope)
+    this.$state.go('global.main.cat', { id: cat.id })
+  }
 
-      this.$state.go('global.main.cat', {id: cat.id})
-    } catch (e) {
-      this.errorHelpers.handleBackendError(this.$scope, e)
-    }
+  updateCatData = (catData) => {
+    this.$log.debug('CatController.updateCatData', catData)
+    this.cat = catData
   }
 }
 
 const catCreation = {
   template: template,
   controller: CatCreationController,
-  controllerAs: 'catCreationCtrl',
   bindings: {
     cat: '<'
   }

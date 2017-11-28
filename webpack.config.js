@@ -3,8 +3,16 @@ const fs = require('fs')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const StringReplacePlugin = require('string-replace-webpack-plugin')
-const _ = require('lodash')
+const camelCaseLodash = require('lodash/camelCase')
 const glob = require('glob')
+
+const camelCase = (val) => {
+  let prefix = ''
+  if (val[0] === '$') {
+    prefix = '$'
+  }
+  return `${prefix}${camelCaseLodash(val)}`
+}
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json'))
 
@@ -80,7 +88,7 @@ module.exports = {
       },
       // generates index.js for containers and components
       {
-        test: /\\index.js$/,
+        test: /index.js$/,
         loader: StringReplacePlugin.replace({
           replacements: [
             {
@@ -89,7 +97,7 @@ module.exports = {
                 let context = this.context
                 let contextFolder = path.relative(path.join(__dirname, 'src'), context)
 
-                let components = glob.sync(path.join(context, '**'))
+                let components = glob.sync(path.join(context, '*'))
                   .filter(source => {
                     // only folders with index.js file or .js file but not index.js
                     if (fs.lstatSync(source).isDirectory()) {
@@ -101,11 +109,11 @@ module.exports = {
                   .map(directory => path.relative(context, directory).replace('\\', '/').replace(/\.js+$/, ''))
 
                 let importStatements = components.reduce((res, c) => {
-                  res += `import ${_.camelCase(path.basename(c))} from '${contextFolder}/${c}';`
+                  res += `import ${camelCase(path.basename(c))} from '${contextFolder}/${c}';`
                   return res
                 }, '')
                 return `${importStatements} export default { 
-                        ${components.map(c => _.camelCase(path.basename(c))).join(',')} };`
+                        ${components.map(c => camelCase(path.basename(c))).join(',')} };`
               }
             }
           ]

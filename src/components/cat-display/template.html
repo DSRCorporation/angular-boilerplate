@@ -24,7 +24,7 @@
       Birth Date:
     </div>
     <div class="text-input">
-      <input required ng-readonly="!$ctrl.isEditing" ng-model="$ctrl.cat.birthDate" />
+      <input ng-readonly="!$ctrl.isEditing" name="birthDate" ng-minlength="4" required ng-model="$ctrl.cat.birthDate" ng-model-options="{ allowInvaid: true }"/>
       <error input="birthDate"></error>
     </div>
   </div>

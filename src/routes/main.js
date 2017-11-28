@@ -29,9 +29,9 @@ const cats = {
 }
 
 const catCreation = {
-  name: 'global.main.cat-creation',
+  name: 'global.main.cat-create',
   url: 'cats/',
-  component: 'catCreation'
+  component: 'catCreate'
 }
 
 const cat = {

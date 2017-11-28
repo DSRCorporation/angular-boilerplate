@@ -18,8 +18,5 @@ export default {
   },
   localStorageKeys: {
     authToken: 'authToken'
-  },
-  timeouts: {
-    toaster: 3000
   }
 }

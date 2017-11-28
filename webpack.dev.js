@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.config.js')
 const path = require('path')
@@ -13,5 +14,12 @@ module.exports = merge(baseConfig, {
     historyApiFallback: true,
     inline: true,
     port: 3002
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
+    })
+  ]
 })

@@ -12,6 +12,7 @@ export default {
     required: 'Please enter a boss name.'
   },
   birthDate: {
-    required: 'Please enter a birth date.'
+    required: 'Please enter a birth date.',
+    minlength: '123'
   }
 }

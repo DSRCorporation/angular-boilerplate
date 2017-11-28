@@ -13,28 +13,24 @@ class CatController {
       return
     }
 
-    try {
-      await this.appResources.Cat.update({id: this.cat.id}, pick(this.cat, 'name', 'bossName', 'birthDate')).$promise
-      this.isEditing = false
-    } catch (e) {
-      this.errorHelpers.handleBackendError(this.$scope, e)
-    }
+    await this.appResources.Cat.update({id: this.cat.id}, pick(this.cat, 'name', 'bossName', 'birthDate')).$promiseHandled(this.$scope)
+    this.isEditing = false
   }
 
   deleteCat = async () => {
-    try {
-      await this.appResources.Cat.delete({id: this.cat.id}).$promise
-      this.$state.go('global.main.cats')
-    } catch (e) {
-      this.errorHelpers.handleBackendError(this.$scope, e)
-    }
+    await this.appResources.Cat.delete({id: this.cat.id}).$promiseHandled(this.$scope)
+    this.$state.go('global.main.cats')
+  }
+
+  updateCatData = (catData) => {
+    this.$log.debug('CatController.updateCatData', catData)
+    Object.assign(this.cat, catData)
   }
 }
 
 const cat = {
   template: template,
   controller: CatController,
-  controllerAs: 'catCtrl',
   bindings: {
     catObj: '<'
   }

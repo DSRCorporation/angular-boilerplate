@@ -9,7 +9,6 @@ class CatsController {
 const cats = {
   template: template,
   controller: CatsController,
-  controllerAs: 'catsCtrl',
   bindings: {
     cats: '<'
   }

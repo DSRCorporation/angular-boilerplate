@@ -11,8 +11,7 @@ class MainController {
 
 const main = {
   template: template,
-  controller: MainController,
-  controllerAs: 'mainCtrl'
+  controller: MainController
 }
 
 export default main

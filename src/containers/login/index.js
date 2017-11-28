@@ -21,8 +21,7 @@ class LoginController {
 
 const login = {
   template: template,
-  controller: LoginController,
-  controllerAs: 'loginCtrl'
+  controller: LoginController
 }
 
 export default login

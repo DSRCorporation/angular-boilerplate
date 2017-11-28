@@ -8,7 +8,7 @@
     </button>
   </div>
 
-  <div class="cats__item" ng-click="catsCtrl.viewCat(cat)" ng-repeat="cat in catsCtrl.cats.cats">
+  <div class="cats__item" ng-click="$ctrl.viewCat(cat)" ng-repeat="cat in $ctrl.cats.cats">
     <div>
       Name: {{cat.name}}
     </div>

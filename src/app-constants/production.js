@@ -1,5 +1,5 @@
 export default {
   apiSettings: {
-    apiRoot: 'https://backend/api/v1'
+    apiRoot: 'http://localhost:3030/api/v1'
   }
 }

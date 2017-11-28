@@ -9,12 +9,6 @@ module.exports = merge(baseConfig, {
     path: path.resolve(__dirname, '.tmp'),
     filename: '[chunkhash].bundle.js'
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, '.tmp'),
-    historyApiFallback: true,
-    inline: true,
-    port: 3002
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

@@ -67,6 +67,7 @@
     "version-major-b": "export CURR_VERSION_CMD=major && npm run version-update-b",
     "upgrade-dependencies": "ncu -a && yarn install",
     "start": "./node_modules/.bin/webpack-dev-server --colors --open --config webpack.dev.js",
+    "start-prod": "./node_modules/.bin/webpack-dev-server --colors --open --config webpack.prod.js",
     "build": "./node_modules/.bin/webpack --config webpack.prod.js",
     "lint": "./node_modules/.bin/standard"
   },

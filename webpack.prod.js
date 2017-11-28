@@ -19,5 +19,8 @@ module.exports = merge(baseConfig, {
         'NODE_ENV': JSON.stringify('production')
       }
     })
-  ]
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist')
+  }
 })

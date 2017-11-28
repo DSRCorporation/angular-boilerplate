@@ -136,5 +136,11 @@ module.exports = {
     }),
     new ExtractTextPlugin({filename: '[contenthash].styles.css'}),
     new StringReplacePlugin()
-  ]
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, '.tmp'),
+    historyApiFallback: true,
+    inline: true,
+    port: 3002
+  }
 }

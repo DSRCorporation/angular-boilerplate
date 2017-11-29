@@ -1,4 +1,4 @@
-# AngularJS sample app by DSR Corporation    
+# AngularJS boilerplate by DSR Corporation    
 
 ## Table of contents
 

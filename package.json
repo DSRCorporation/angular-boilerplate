@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-sample-project-dsr",
+  "name": "angularjs-boilerplate-dsr",
   "version": "1.0.0",
   "dependencies": {
     "@iamadamjowett/angular-click-outside": "^2.10.1",

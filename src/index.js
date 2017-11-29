@@ -29,7 +29,7 @@ require('@iamadamjowett/angular-click-outside')
 const clickOutside = 'angular-click-outside'
 
 const app = angular
-  .module('angularjs-sample-project-dsr', [
+  .module('angularjs-boilerplate-dsr', [
     ngSanitize,
     ngAnimate,
     ngResource,

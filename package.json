@@ -1,6 +1,20 @@
 {
   "name": "angularjs-boilerplate-dsr",
-  "version": "1.0.0",
+  "description": "AngularJS boilerplate by DSR Corporation",
+  "version": "1.0.1",
+  "repository": { 
+  	"type" : "git",
+  	"url" : "git+https://github.com/DSRCorporation/angular-generator.git"
+  },
+  "homepage": "https://github.com/DSRCorporation/angular-generator#readme",
+  "keywords": [
+    "angular",
+    "angularjs",
+    "boilerplate",
+    "sample"
+  ],
+  "author": "DSR Corporation",
+  "license": "MIT",
   "dependencies": {
     "@iamadamjowett/angular-click-outside": "^2.10.1",
     "@uirouter/angularjs": "^1.0.11",

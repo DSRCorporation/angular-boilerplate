@@ -4,9 +4,9 @@
   "version": "1.0.1",
   "repository": { 
   	"type" : "git",
-  	"url" : "git+https://github.com/DSRCorporation/angular-generator.git"
+  	"url" : "git+https://github.com/DSRCorporation/angular-boilerplate.git"
   },
-  "homepage": "https://github.com/DSRCorporation/angular-generator#readme",
+  "homepage": "https://github.com/DSRCorporation/angular-boilerplate#readme",
   "keywords": [
     "angular",
     "angularjs",

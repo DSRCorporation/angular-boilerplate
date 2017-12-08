@@ -1,7 +1,7 @@
 {
   "name": "angularjs-boilerplate-dsr",
   "description": "AngularJS boilerplate by DSR Corporation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": { 
   	"type" : "git",
   	"url" : "git+https://github.com/DSRCorporation/angular-boilerplate.git"

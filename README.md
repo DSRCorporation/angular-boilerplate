@@ -1,3 +1,5 @@
+# DEPRECATED! DO NOT USE IT!
+
 # AngularJS boilerplate by DSR Corporation    
 
 ## Table of contents
